@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --ignore lib --exec babel-node src/server",
-    "data": "nodemon --ignore lib --exec babel-node src/server/dataServer",
+    "data": "node src/server/dataServer",
     "wds": "webpack-dev-server --progress",
     "webpack": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
