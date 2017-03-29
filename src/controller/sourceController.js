@@ -3,7 +3,8 @@ const Source = require('./../model/SourceModel');
 
 module.exports = {
   getSources: (req, res, next) => {
-    Source.find(req.query, (err, sources) => {
+    const topic = req.query.topic;
+    Source.find({ topic }, (err, sources) => {
       if (err) res.status(400).send(err);
       else res.json(sources);
     });

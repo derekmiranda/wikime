@@ -8,11 +8,12 @@ class Topic extends Component {
   constructor(props) {
     super();
     this.state = { sources: [] };
+    this.topicId = props.id;
   }
 
   componentDidMount() {
     // fetch sources from data server
-    fetch(`${DATA_URL}/source`, { 'mode': 'no-cors' })
+    fetch(`${DATA_URL}/source?topic=${this.topicId}`, { 'mode': 'no-cors' })
       .then(res => res.json(), handleErr)
       .then(sources => {
 
@@ -32,10 +33,6 @@ class Topic extends Component {
       .catch(handleErr);
   }
 
-  componentDidUpdate() {
-    console.log(this.state.sources);
-  }
-
   addSource() {
     // this.setState({
     //   numSources: this.state.numSources + 1
@@ -48,12 +45,9 @@ class Topic extends Component {
       <div id='topic'>
         <h1>{this.props.name}</h1>
         {
-          this.state.sources.length ?
             this.state.sources.map(
               (source, i) => newSource(source, i)
             )
-            :
-            <p>Loading sources...</p>
         }
         <button onClick={this.addSource.bind(this)}>Add Source</button>
       </div>
