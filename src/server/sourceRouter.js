@@ -1,8 +1,9 @@
 const express = require('express');
+const sourceController = require('./../controller/sourceController');
+
 const sourceRouter = express.Router();
 
-sourceRouter.get('/', (req, res) => {
-  res.send('We gotta hack the source code!')
-});
+sourceRouter.get('/', sourceController.getSources);
+sourceRouter.post('/', sourceController.postSource);
 
 module.exports = sourceRouter;

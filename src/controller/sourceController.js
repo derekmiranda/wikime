@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
-const Topic = require('./../model/TopicModel');
+const Source = require('./../model/SourceModel');
 
 module.exports = {
-  getTopics: (req, res, next) => {
+  getSources: (req, res, next) => {
     // if no query string
-    Topic.find(req.query, (err, topics) => {
+    Source.find(req.query, (err, sources) => {
       if (err) res.status(400).send(err);
-      else res.json(topics);
+      else res.json(sources);
     });
   },
 
-  postTopic: (req, res, next) => {
+  postSource: (req, res, next) => {
     
     function sendErr(err) {
       res.status(400).send(err);
@@ -19,25 +19,25 @@ module.exports = {
     const _id = req.body._id;
 
     const findAndUpdatePromise = new Promise((resolve, reject) => {
-      Topic.findOne({ _id }, (err, topic) => {
+      Source.findOne({ _id }, (err, source) => {
         if (err) reject(err);
-        else resolve(topic);
+        else resolve(source);
       });
     });
 
     findAndUpdatePromise
-      .then(topic => {
+      .then(source => {
         return new Promise((resolve, reject) => {
-          // if doesn't find a topic, make a new one
-          if (!topic) {
-            Topic.create(req.body, (err, created) => {
+          // if doesn't find a source, make a new one
+          if (!source) {
+            Source.create(req.body, (err, created) => {
               if (err) reject(err);
               else resolve(created);
             });
           } else {
-            Topic.update({ _id }, req.body, (err, writeRes) => {
+            Source.update({ _id }, req.body, (err, writeRes) => {
               if (err) reject(err);
-              else resolve(topic);
+              else resolve(source);
             });
           }
         });
