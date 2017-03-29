@@ -13,7 +13,7 @@ class Topic extends Component {
 
   componentDidMount() {
     // fetch sources from data server
-    fetch(`${DATA_URL}/source?topic=${this.topicId}`, { 'mode': 'no-cors' })
+    fetch(`${DATA_URL}/source?topic=${this.topicId}`)
       .then(res => res.json(), handleErr)
       .then(sources => {
 
@@ -40,14 +40,26 @@ class Topic extends Component {
     console.log('Sup homieeeeeeeees!');
   }
 
+  newSource(source, num) {
+    return (
+      <SourceContainer
+        key={num}
+        name={source.name}
+        notes={source.notes}
+        url={source.url}
+        topic={this.topicId}
+      />
+    );
+  }
+
   render() {
     return (
       <div id='topic'>
         <h1>{this.props.name}</h1>
         {
-            this.state.sources.map(
-              (source, i) => newSource(source, i)
-            )
+          this.state.sources.map(
+            (source, i) => this.newSource(source, i)
+          )
         }
         <button className='addSource' onClick={this.addSource.bind(this)}>Add Source</button>
       </div>
@@ -56,18 +68,6 @@ class Topic extends Component {
 };
 
 export default Topic;
-
-function newSource(source, num) {
-  return (
-    <SourceContainer
-      key={num}
-      name={source.name}
-      notes={source.notes}
-      url={source.url}
-      id={source._id}
-    />
-  );
-}
 
 function handleErr(err) {
   console.log(err);

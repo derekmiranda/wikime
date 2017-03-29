@@ -13,6 +13,7 @@ module.exports = {
   postSource: (req, res, next) => {
     
     function sendErr(err) {
+      console.log(req.body);
       res.status(400).send(err);
     }
 

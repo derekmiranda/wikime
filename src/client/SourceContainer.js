@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import fetch from 'node-fetch';
+import queryString from 'query-string';
+import { DATA_URL } from '../shared/config';
 
 class SourceContainer extends Component {
   constructor(props) {
@@ -55,8 +57,27 @@ class SourceContainer extends Component {
   saveInput(input) {
     if (this.state.notesSaved) return;
 
-    if (input === 'notes') this.setState({ notesSaved: true });
-    console.log(this.state[input]);
+    const updatedSource = {
+      name: this.state.name,
+      url: this.state.url,
+      notes: this.state.notes,
+      topic: this.props.topic
+    };
+    const body = queryString.stringify(updatedSource);
+
+    fetch(`${DATA_URL}/source`, {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/x-www-form-urlencoded'
+      },
+      body
+    })
+      .then(res => res.json(), handleErr)
+      .then(resObj => {
+        console.log(input + ' saved!');
+        if (input === 'notes') this.setState({ notesSaved: true });
+      }, handleErr);
+
   }
 
   render() {
@@ -91,3 +112,7 @@ class SourceContainer extends Component {
 };
 
 export default SourceContainer;
+
+function handleErr(err) {
+  console.log(err);
+}
