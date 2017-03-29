@@ -16,7 +16,7 @@ class NotesContainer extends Component {
   constructor() {
     super();
     this.state = {
-      numSources: 3
+      numSources: 1
     };
   }
 
@@ -28,26 +28,40 @@ class NotesContainer extends Component {
 
   componentDidMount() {
     fetch(`${DATA_URL}/topic`)
-      .then(res => res.text(), handleErr)
-      .then(body => console.log(body), handleErr);
+      .then(res => res.json(), handleErr)
+      .then(body => {
+        if (!body) throw 'Unable to fetch topic';
+        this.setState({
+          topicName: body.name,
+          topicId: body._id,
+        });
+      })
+      .catch(handleErr);
   }
 
   render() {
-    // const numSources = this.state.numSources;
-    // const sources = [];
+    const numSources = this.state.numSources;
+    const sources = [];
 
-    // for (let i = 1; i <= numSources; i += 1) {
-    //   sources.push(
-    //     newSource(i)
-    //   );
-    // }
+    for (let i = 1; i <= numSources; i += 1) {
+      sources.push(
+        newSource(i)
+      );
+    }
 
-    return (
+    return ( this.state.topicName ?
+
       <div id='notesContainer'>
         <ParentContainer />
-        <h1>New Topic</h1>
-        {newSource(1)}
+        <h1>{this.state.topicName}</h1>
+        {sources}
         <button onClick={this.addSource.bind(this)}>Add Source</button>
+      </div>
+
+      :
+
+      <div id='topicLoading'>
+        <p>Topic currently loading...</p>
       </div>
     );
   }
