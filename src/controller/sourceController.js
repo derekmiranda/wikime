@@ -16,10 +16,10 @@ module.exports = {
       res.status(400).send(err);
     }
 
-    const _id = req.body._id;
+    const name = req.body.name;
 
     const findAndUpdatePromise = new Promise((resolve, reject) => {
-      Source.findOne({ _id }, (err, source) => {
+      Source.findOne({ name }, (err, source) => {
         if (err) reject(err);
         else resolve(source);
       });
@@ -35,7 +35,7 @@ module.exports = {
               else resolve(created);
             });
           } else {
-            Source.update({ _id }, req.body, (err, writeRes) => {
+            Source.update({ name }, req.body, (err, writeRes) => {
               if (err) reject(err);
               else resolve(source);
             });
