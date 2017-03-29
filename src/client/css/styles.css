@@ -1,3 +1,9 @@
 body {
-  background-color: salmon;
+  padding: 50px;
+  background-color: darkseagreen;
+  font-family: Helvetica, sans-serif;
+}
+
+.title {
+  color: whitesmoke;
 }
