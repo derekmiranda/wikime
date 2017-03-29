@@ -63,6 +63,7 @@ function newSource(source, num) {
       key={num}
       name={source.name}
       notes={source.notes}
+      url={source.url}
       id={source._id}
     />
   );
