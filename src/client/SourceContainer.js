@@ -10,7 +10,11 @@ class SourceContainer extends Component {
     return (
       <div className='source'>
         <h2>{this.props.name}</h2>
-        <input type='text' placeholder='Type your notes here' />
+        <input
+          type='text'
+          placeholder='Type your notes here'
+          value={this.props.notes}
+        />
       </div>
     );
   }

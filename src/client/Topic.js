@@ -22,11 +22,11 @@ class Topic extends Component {
         const copiedSources = sources.map(source => {
           return {
             name: source.name,
+            notes: source.notes,
+            url: source.url,
             _id: source._id
           }
         });
-
-        console.log(copiedSources);
 
         this.setState({ sources: copiedSources });
       })
@@ -49,7 +49,7 @@ class Topic extends Component {
               (source, i) => newSource(source, i)
             )
         }
-        <button onClick={this.addSource.bind(this)}>Add Source</button>
+        <button className='addSource' onClick={this.addSource.bind(this)}>Add Source</button>
       </div>
     );
   }
@@ -62,6 +62,7 @@ function newSource(source, num) {
     <SourceContainer
       key={num}
       name={source.name}
+      notes={source.notes}
       id={source._id}
     />
   );
