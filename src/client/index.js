@@ -2,10 +2,9 @@ import 'babel-polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import NotesContainer from './NotesContainer';
 
 ReactDOM.render(
-  <div>
-    <h1>Concept Tree</h1>
-  </div>,
+  <NotesContainer />,
   document.getElementById('root')
 );
