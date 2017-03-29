@@ -45,7 +45,7 @@ module.exports = {
         });
       }, sendErr)
 
-      .then(result => res.json(result), sendErr);
+      .then(res.json.bind(res), sendErr);
 
     function sendErr(err) {
       res.status(400).send(err);
