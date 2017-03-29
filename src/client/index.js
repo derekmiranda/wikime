@@ -2,9 +2,9 @@ import 'babel-polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NotesContainer from './NotesContainer';
+import App from './App';
 
 ReactDOM.render(
-  <NotesContainer />,
+  <App />,
   document.getElementById('root')
 );
