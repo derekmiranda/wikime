@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const PORT = 4000;
 const app = express();
 
-const url = 'mongodb://localhost:27017/concept-tree'
+const url = 'mongodb://localhost:27017/concept-tree';
 mongoose.connect(url);
 
 // Connect to MongoDB

@@ -9,7 +9,7 @@ class SourceContainer extends Component {
   render() {
     return (
       <div className='source'>
-        <h2>Source {this.props.num}</h2>
+        <h2>{this.props.name}</h2>
         <input type='text' placeholder='Type your notes here' />
       </div>
     );

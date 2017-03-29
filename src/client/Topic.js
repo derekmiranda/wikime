@@ -7,31 +7,54 @@ import { DATA_URL } from './../shared/config';
 class Topic extends Component {
   constructor(props) {
     super();
-    this.state = {
-      numSources: 1
-    };
+    this.state = { sources: [] };
+  }
+
+  componentDidMount() {
+    // fetch sources from data server
+    fetch(`${DATA_URL}/source`, { 'mode': 'no-cors' })
+      .then(res => res.json(), handleErr)
+      .then(sources => {
+
+        if (!sources) throw 'Unable to fetch sources';
+
+        const copiedSources = sources.map(source => {
+          return {
+            name: source.name,
+            _id: source._id
+          }
+        });
+
+        console.log(copiedSources);
+
+        this.setState({ sources: copiedSources });
+      })
+      .catch(handleErr);
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.sources);
   }
 
   addSource() {
-    this.setState({
-      numSources: this.state.numSources + 1
-    });
+    // this.setState({
+    //   numSources: this.state.numSources + 1
+    // });
+    console.log('Sup homieeeeeeeees!');
   }
 
   render() {
-    const numSources = this.state.numSources;
-    const sources = [];
-
-    for (let i = 1; i <= numSources; i += 1) {
-      sources.push(
-        newSource(i)
-      );
-    }
-
     return (
       <div id='topic'>
         <h1>{this.props.name}</h1>
-        {sources}
+        {
+          this.state.sources.length ?
+            this.state.sources.map(
+              (source, i) => newSource(source, i)
+            )
+            :
+            <p>Loading sources...</p>
+        }
         <button onClick={this.addSource.bind(this)}>Add Source</button>
       </div>
     );
@@ -40,8 +63,14 @@ class Topic extends Component {
 
 export default Topic;
 
-function newSource(num) {
-  return <SourceContainer key={num} num={num} />;
+function newSource(source, num) {
+  return (
+    <SourceContainer
+      key={num}
+      name={source.name}
+      id={source._id}
+    />
+  );
 }
 
 function handleErr(err) {

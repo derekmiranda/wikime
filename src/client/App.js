@@ -13,6 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // fetch topics from data server
     fetch(`${DATA_URL}/topic`, {'mode': 'no-cors'})
       .then(res => res.json(), handleErr)
       .then(topics => {
@@ -39,7 +40,7 @@ class App extends Component {
         {
           topicComps.length ?
             topicComps :
-            <p>Topic currently loading...</p>
+            <p>Topics currently loading...</p>
         }
       </div>
     );

@@ -6,9 +6,12 @@ const sourceSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  url: String,
-  notes: String,
-  topic: mongoose.Schema.ObjectId,
+  url: { type: String, default: ''},
+  notes: { type: String, default: ''},
+  topic: {
+    type: mongoose.Schema.ObjectId,
+    required: true,
+  }
 });
 
 module.exports = mongoose.model('Source', sourceSchema);
