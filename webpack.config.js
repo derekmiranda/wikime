@@ -27,11 +27,11 @@ module.exports = {
           presets: ['es2015', 'react']
         }
       },
-      // {
-      //   test: /(\.css|\.scss)$/,
-      //   include: [ path.resolve(__dirname, 'client/scss') ],
-      //   loaders: ['style', 'css', 'sass'],
-      // },
+      {
+        test: /(\.css|\.scss)$/,
+        include: [ path.resolve(__dirname, 'src/client/css') ],
+        loaders: ['style', 'css'],
+      },
     ]
   },
   devServer: {
