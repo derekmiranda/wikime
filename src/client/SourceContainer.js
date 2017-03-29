@@ -8,7 +8,7 @@ class SourceContainer extends Component {
       name: props.name,
       notes: props.notes,
       url: props.url,
-      saved: false,
+      notesSaved: false,
     };
   }
 
@@ -16,7 +16,7 @@ class SourceContainer extends Component {
   // autosave
   updateAutosave() {
     // prevent saving again after autosaving while before new input
-    if (this.state.saved) return;
+    if (this.state.notesSaved) return;
 
     const timeSinceUpdate = Date.now() - this.lastNotesUpdate;
     if (timeSinceUpdate > 5000) {
@@ -31,7 +31,7 @@ class SourceContainer extends Component {
   handleTyping(input, event) {
     this.setState({
       [input]: event.target.value,
-      saved: false,
+      notesSaved: false,
     });
     this.lastNotesUpdate = Date.now();
 
@@ -44,15 +44,18 @@ class SourceContainer extends Component {
   }
 
   handleKeyPress(input, event) {
-    if (event.ctrlKey && event.key === 'Enter' && this.state[input]) {
+    // only works for notes if Ctrl+Enter pressed
+    if (input === 'notes' && !event.ctrlKey) return;
+
+    if (event.key === 'Enter' && this.state[input]) {
       this.saveInput(input);
     }
   }
 
   saveInput(input) {
-    if (this.state.saved) return;
+    if (this.state.notesSaved) return;
 
-    this.setState({ saved: true });
+    if (input === 'notes') this.setState({ notesSaved: true });
     console.log(this.state[input]);
   }
 
@@ -70,7 +73,7 @@ class SourceContainer extends Component {
           onKeyPress={this.handleKeyPress.bind(this, 'notes')}
         />
         <p className='caption'>Ctrl+Enter to save notes</p>
-        {this.state.saved &&
+        {this.state.notesSaved &&
           <p className="saveMsg">Notes saved!</p>
         }
         <h3>Link</h3>
@@ -80,6 +83,7 @@ class SourceContainer extends Component {
           placeholder='Source link'
           value={this.state.url}
           onChange={this.handleTyping.bind(this, 'url')}
+          onKeyPress={this.handleKeyPress.bind(this, 'url')}
         />
       </div>
     );
