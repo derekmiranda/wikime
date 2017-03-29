@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const topicController = require('../controller/topicController');
+const bodyParser = require('body-parser');
 
 const PORT = 3000;
 const app = express();
@@ -17,16 +17,21 @@ db.once('open', function() {
   console.log('Mongoose working!');
 });
 
+// allow CORS
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
+// middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
 app.use(express.static(__dirname +'./../')); //serves the index.html
 
-const topicRouter = express.Router();
-const sourceRouter = express.Router();
-
-topicRouter.get('/', topicController.getTopics);
-
-sourceRouter.get('/', (req, res) => {
-  res.send('We gotta hack the source code!')
-});
+const topicRouter = require('./topicRouter')
+const sourceRouter = require('./sourceRouter')
 
 app.use('/topic', topicRouter);
 app.use('/source', sourceRouter);
