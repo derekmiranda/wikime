@@ -1,9 +1,54 @@
 body {
   padding: 50px;
   background-color: darkseagreen;
+  color: #547567;
   font-family: Helvetica, sans-serif;
 }
 
+input, textarea {
+  outline: none;
+  font-size: 14px;
+}
+
 .title {
-  color: whitesmoke;
+  font-size: 50px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #7fa87f;
+}
+
+.topicTitle {
+  margin: 0;
+  color: #cce2d9;
+}
+
+.topicSeparator, .notesInput {
+  width: 100%;
+  max-width: 750px;
+}
+
+.topicSeparator {
+  background-color: #7da57d;
+  height: 1px;
+  border: none;
+  margin: 0;
+}
+
+.inputTitle {
+  margin-bottom: 1px;
+}
+
+.notesInput {
+  height: 180px;
+}
+
+.caption {
+  margin-top: 2px;
+  font-size: 12px;
+  color: dimgray;
+}
+
+.urlInput {
+  width: 75%;
+  max-width: 500px;
 }

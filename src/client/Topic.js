@@ -55,7 +55,8 @@ class Topic extends Component {
   render() {
     return (
       <div id='topic'>
-        <h1>{this.props.name}</h1>
+        <h1 className='topicTitle'>{this.props.name}</h1>
+        <hr className='topicSeparator' />
         {
           this.state.sources.map(
             (source, i) => this.newSource(source, i)

@@ -84,7 +84,7 @@ class SourceContainer extends Component {
     return (
       <div className='source'>
         <h2>{this.state.name}</h2>
-        <h3>Notes</h3>
+        <h3 className='inputTitle'>Notes</h3>
         <textarea
           className='notesInput'
           type='text'
@@ -97,7 +97,7 @@ class SourceContainer extends Component {
         {this.state.notesSaved &&
           <p className="saveMsg">Notes saved!</p>
         }
-        <h3>Link</h3>
+        <h3 className='inputTitle'>Link</h3>
         <input
           className='urlInput'
           type='text'
