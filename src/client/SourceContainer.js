@@ -61,7 +61,8 @@ class SourceContainer extends Component {
       name: this.state.name,
       url: this.state.url,
       notes: this.state.notes,
-      topic: this.props.topic
+      topic: this.props.topic,
+      _id: this.props.id,
     };
     const body = queryString.stringify(updatedSource);
 
@@ -75,7 +76,7 @@ class SourceContainer extends Component {
       .then(res => res.json(), handleErr)
       .then(resObj => {
         console.log(input + ' saved!');
-        if (input === 'notes') this.setState({ notesSaved: true });
+        this.setState({ notesSaved: true });
       }, handleErr);
 
   }
@@ -83,7 +84,14 @@ class SourceContainer extends Component {
   render() {
     return (
       <div className='source'>
-        <h2>{this.state.name}</h2>
+        <input
+          className='sourceTitle'
+          type='text'
+          placeholder='Source Title'
+          value={this.state.name}
+          onChange={this.handleTyping.bind(this, 'name')}
+          onKeyPress={this.handleKeyPress.bind(this, 'name')}
+        />
         <h3 className='inputTitle'>Notes</h3>
         <textarea
           className='notesInput'

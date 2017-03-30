@@ -30,7 +30,7 @@ module.exports = {
       {
         test: /(\.css|\.scss)$/,
         include: [ path.resolve(__dirname, 'src/client/css') ],
-        loaders: ['style', 'css'],
+        loaders: ['style-loader', 'css-loader'],
       },
     ]
   },

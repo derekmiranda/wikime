@@ -34,6 +34,21 @@ input, textarea {
   margin: 0;
 }
 
+.sourceTitle {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #547567;
+  border: none;
+  /*border-bottom: 1px solid #547567;*/
+  width: 400px;
+  background-color: rgba(0,0,0,0);
+}
+
+.sourceTitle::-webkit-input-placeholder {
+  color: #7fa87f;
+}
+
 .inputTitle {
   margin-bottom: 1px;
 }
@@ -51,4 +66,14 @@ input, textarea {
 .urlInput {
   width: 75%;
   max-width: 500px;
+}
+
+.addSource {
+  margin-top: 5px;
+  background-color: #cce2d9;
+  color: #547567;
+  font-size: 1em;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
 }

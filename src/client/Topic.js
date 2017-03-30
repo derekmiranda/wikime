@@ -48,6 +48,7 @@ class Topic extends Component {
         notes={source.notes}
         url={source.url}
         topic={this.topicId}
+        id={source._id}
       />
     );
   }

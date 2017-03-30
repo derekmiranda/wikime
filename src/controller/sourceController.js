@@ -13,14 +13,13 @@ module.exports = {
   postSource: (req, res, next) => {
     
     function sendErr(err) {
-      console.log(req.body);
       res.status(400).send(err);
     }
 
-    const name = req.body.name;
+    const _id = req.body._id;
 
     const findAndUpdatePromise = new Promise((resolve, reject) => {
-      Source.findOne({ name }, (err, source) => {
+      Source.findOne({ _id }, (err, source) => {
         if (err) reject(err);
         else resolve(source);
       });
@@ -29,6 +28,7 @@ module.exports = {
     findAndUpdatePromise
       .then(source => {
         return new Promise((resolve, reject) => {
+          console.log(source);
           // if doesn't find a source, make a new one
           if (!source) {
             Source.create(req.body, (err, created) => {
@@ -36,7 +36,7 @@ module.exports = {
               else resolve(created);
             });
           } else {
-            Source.update({ name }, req.body, (err, writeRes) => {
+            Source.update({ _id }, req.body, (err, writeRes) => {
               if (err) reject(err);
               else resolve(source);
             });
