@@ -28,7 +28,6 @@ module.exports = {
     findAndUpdatePromise
       .then(source => {
         return new Promise((resolve, reject) => {
-          console.log(source);
           // if doesn't find a source, make a new one
           if (!source) {
             Source.create(req.body, (err, created) => {
