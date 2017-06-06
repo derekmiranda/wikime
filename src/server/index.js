@@ -1,10 +1,13 @@
 // Front end server
 const express = require('express');
-const bodyParser = require('body-parser');
+const dataRouter = require('./routers/dataRouter');
 
 const PORT = 3000;
 const app = express();
 
-app.use(express.static(__dirname +'./../')); //serves the index.html
+app.use('/', dataRouter);
+
+app.use(express.static(__dirname +'/public'));
+app.use(express.static(__dirname +'/build'));
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

@@ -1,11 +1,11 @@
 {
   "name": "concept-tree",
   "version": "1.0.0",
-  "description": "Organize notes and research on complex topics. Edit",
+  "description": "Organize notes and research on complex topics",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --ignore lib --exec babel-node src/server",
-    "data": "node src/server/dataServer",
+    "start": "node src/server",
+    "devstart": "nodemon src/server",
     "wds": "webpack-dev-server --progress",
     "webpack": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
