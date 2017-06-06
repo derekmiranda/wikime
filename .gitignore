@@ -1,5 +1,4 @@
-/dist/
-/src/build/
+**/build
 
 # Logs
 logs
