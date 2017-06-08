@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import SourceContainer from './SourceContainer';
-// import ParentContainer from './ParentContainer';
-import fetch from 'node-fetch';
 import { DATA_URL } from './../shared/config';
 
 class Topic extends Component {

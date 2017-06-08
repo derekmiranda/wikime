@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import fetch from 'node-fetch';
 import { DATA_URL } from './../shared/config';
 import Topic from './Topic';
 

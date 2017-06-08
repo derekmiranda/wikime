@@ -26,7 +26,6 @@
     "express": "^4.15.2",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.2",
-    "node-fetch": "^1.6.3",
     "query-string": "^4.3.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
